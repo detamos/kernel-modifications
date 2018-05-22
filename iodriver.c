@@ -18,10 +18,10 @@ static size_t device_write(struct file *,char *,size_t,loff_t *);
 
 static struct file_operations fops = 
 {
-	.read = device_read,
-	.wrtie = device_write,
-	.open = device_open,
-	.release = device_release
+	read : device_read,
+	wrtie : device_write,
+	open : device_open,
+	release : device_release
 };
 
 int init_module(void)
