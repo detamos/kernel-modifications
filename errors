@@ -7,20 +7,32 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   current->thread.addr_limit = fs;
          ^~
 /home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:21:9: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-  read : device_read,
-         ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:21:9: note: (near initialization for ‘fops.read’)
-/home/detamos/testing/iodriver/iodriver.c:22:2: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
-  wrtie : device_write,
-  ^~~~~
-  write
-/home/detamos/testing/iodriver/iodriver.c:22:10: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
-  wrtie : device_write,
-          ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:22:10: note: (near initialization for ‘fops’)
-/home/detamos/testing/iodriver/iodriver.c:22:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-/home/detamos/testing/iodriver/iodriver.c:22:10: note: (near initialization for ‘fops.write’)
+/home/detamos/testing/iodriver/iodriver.c:21:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
+  .read = device_read,
+          ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:21:10: note: (near initialization for ‘fops.read’)
+/home/detamos/testing/iodriver/iodriver.c:21:10: error: initializer element is not constant
+/home/detamos/testing/iodriver/iodriver.c:21:10: note: (near initialization for ‘fops.read’)
+/home/detamos/testing/iodriver/iodriver.c:22:3: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
+  .wrtie = device_write,
+   ^~~~~
+   write
+/home/detamos/testing/iodriver/iodriver.c:22:11: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
+  .wrtie = device_write,
+           ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops’)
+/home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
+/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
+/home/detamos/testing/iodriver/iodriver.c:22:11: error: initializer element is not constant
+/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
+/home/detamos/testing/iodriver/iodriver.c:23:10: error: initializer element is not constant
+  .open = device_open,
+          ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:23:10: note: (near initialization for ‘fops.open’)
+/home/detamos/testing/iodriver/iodriver.c:24:13: error: initializer element is not constant
+  .release = device_release
+             ^~~~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:24:13: note: (near initialization for ‘fops.release’)
 /home/detamos/testing/iodriver/iodriver.c: In function ‘cleanup_module’:
 /home/detamos/testing/iodriver/iodriver.c:42:12: error: void value not ignored as it ought to be
   int ret = unregister_chrdev(Major, IODRIVER);
@@ -28,8 +40,14 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
 /home/detamos/testing/iodriver/iodriver.c:42:6: warning: unused variable ‘ret’ [-Wunused-variable]
   int ret = unregister_chrdev(Major, IODRIVER);
       ^~~
-In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
 /home/detamos/testing/iodriver/iodriver.c: At top level:
+/home/detamos/testing/iodriver/iodriver.c:46:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+ {
+ ^
+/home/detamos/testing/iodriver/iodriver.c:55:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+ {
+ ^
+In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
 ./include/linux/kernel.h:806:42: error: expected identifier or ‘(’ before ‘{’ token
  #define __min(t1, t2, min1, min2, x, y) ({  \
                                           ^
@@ -39,22 +57,18 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
 /home/detamos/testing/iodriver/iodriver.c:63:6: note: in expansion of macro ‘min’
  void min(int a,int b)
       ^~~
-/home/detamos/testing/iodriver/iodriver.c: In function ‘device_read’:
-/home/detamos/testing/iodriver/iodriver.c:75:8: error: ‘ptr’ undeclared (first use in this function)
-  while(ptr != NULL && buffer != NULL)
-        ^~~
-/home/detamos/testing/iodriver/iodriver.c:75:8: note: each undeclared identifier is reported only once for each function it appears in
-In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
-./include/linux/kernel.h:809:16: warning: comparison of distinct pointer types lacks a cast
-  (void) (&min1 == &min2);   \
-                ^
-./include/linux/kernel.h:818:2: note: in expansion of macro ‘__min’
-  __min(typeof(x), typeof(y),   \
-  ^~~~~
-/home/detamos/testing/iodriver/iodriver.c:85:9: note: in expansion of macro ‘min’
-  return min(size,bytesRead);
-         ^~~
-At top level:
+/home/detamos/testing/iodriver/iodriver.c:71:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+ {
+ ^
+/home/detamos/testing/iodriver/iodriver.c:89:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+ {
+ ^
+/home/detamos/testing/iodriver/iodriver.c:12:13: warning: ‘data’ defined but not used [-Wunused-variable]
+ static char data[MAX];
+             ^~~~
+/home/detamos/testing/iodriver/iodriver.c:11:12: warning: ‘numDevices’ defined but not used [-Wunused-variable]
+ static int numDevices = 0;
+            ^~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
  static int Delay;
             ^~~~~
