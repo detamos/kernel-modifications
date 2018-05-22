@@ -8,20 +8,20 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   current->thread.addr_limit = fs;
          ^~
 /home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:21:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-  .read = device_read,
-          ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:21:10: note: (near initialization for ‘fops.read’)
-/home/detamos/testing/iodriver/iodriver.c:22:3: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
-  .wrtie = device_write,
-   ^~~~~
-   write
-/home/detamos/testing/iodriver/iodriver.c:22:11: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
-  .wrtie = device_write,
-           ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops’)
-/home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
+/home/detamos/testing/iodriver/iodriver.c:21:9: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
+  read : device_read,
+         ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:21:9: note: (near initialization for ‘fops.read’)
+/home/detamos/testing/iodriver/iodriver.c:22:2: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
+  wrtie : device_write,
+  ^~~~~
+  write
+/home/detamos/testing/iodriver/iodriver.c:22:10: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
+  wrtie : device_write,
+          ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:22:10: note: (near initialization for ‘fops’)
+/home/detamos/testing/iodriver/iodriver.c:22:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
+/home/detamos/testing/iodriver/iodriver.c:22:10: note: (near initialization for ‘fops.write’)
 /home/detamos/testing/iodriver/iodriver.c: In function ‘cleanup_module’:
 /home/detamos/testing/iodriver/iodriver.c:42:12: error: void value not ignored as it ought to be
   int ret = unregister_chrdev(Major, IODRIVER);
