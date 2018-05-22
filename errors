@@ -8,28 +8,20 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   current->thread.addr_limit = fs;
          ^~
 /home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:16:10: error: ‘device_read’ undeclared here (not in a function); did you mean ‘i_size_read’?
+/home/detamos/testing/iodriver/iodriver.c:21:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
   .read = device_read,
           ^~~~~~~~~~~
-          i_size_read
-/home/detamos/testing/iodriver/iodriver.c:17:3: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
+/home/detamos/testing/iodriver/iodriver.c:21:10: note: (near initialization for ‘fops.read’)
+/home/detamos/testing/iodriver/iodriver.c:22:3: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
   .wrtie = device_write,
    ^~~~~
    write
-/home/detamos/testing/iodriver/iodriver.c:17:11: error: ‘device_write’ undeclared here (not in a function); did you mean ‘device_read’?
+/home/detamos/testing/iodriver/iodriver.c:22:11: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
   .wrtie = device_write,
            ^~~~~~~~~~~~
-           device_read
-/home/detamos/testing/iodriver/iodriver.c:17:11: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
-/home/detamos/testing/iodriver/iodriver.c:17:11: note: (near initialization for ‘fops’)
-/home/detamos/testing/iodriver/iodriver.c:18:10: error: ‘device_open’ undeclared here (not in a function); did you mean ‘device_read’?
-  .open = device_open,
-          ^~~~~~~~~~~
-          device_read
-/home/detamos/testing/iodriver/iodriver.c:19:13: error: ‘device_release’ undeclared here (not in a function); did you mean ‘device_read’?
-  .release = device_release
-             ^~~~~~~~~~~~~~
-             device_read
+/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops’)
+/home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
+/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
 /home/detamos/testing/iodriver/iodriver.c: In function ‘cleanup_module’:
 /home/detamos/testing/iodriver/iodriver.c:42:12: error: void value not ignored as it ought to be
   int ret = unregister_chrdev(Major, IODRIVER);
@@ -64,18 +56,6 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
   return min(size,bytesRead);
          ^~~
 At top level:
-/home/detamos/testing/iodriver/iodriver.c:88:15: warning: ‘device_write’ defined but not used [-Wunused-function]
- static size_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
-               ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:70:15: warning: ‘device_read’ defined but not used [-Wunused-function]
- static size_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
-               ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:54:12: warning: ‘device_release’ defined but not used [-Wunused-function]
- static int device_release(struct inode *inode_,struct file *file_)
-            ^~~~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:45:12: warning: ‘device_open’ defined but not used [-Wunused-function]
- static int device_open(struct inode *inode_, struct file *file_)
-            ^~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
  static int Delay;
             ^~~~~
