@@ -1,0 +1,89 @@
+make -C /lib/modules/4.15.0-22-generic/build M=/home/detamos/testing/iodriver modules
+make[1]: Entering directory '/usr/src/linux-headers-4.15.0-22-generic'
+Makefile:976: "Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, libelf-devel or elfutils-libelf-devel"
+  CC [M]  /home/detamos/testing/iodriver/iodriver.o
+In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
+./arch/x86/include/asm/uaccess.h: In function ‘set_fs’:
+./arch/x86/include/asm/uaccess.h:32:9: error: dereferencing pointer to incomplete type ‘struct task_struct’
+  current->thread.addr_limit = fs;
+         ^~
+/home/detamos/testing/iodriver/iodriver.c: At top level:
+/home/detamos/testing/iodriver/iodriver.c:16:10: error: ‘device_read’ undeclared here (not in a function); did you mean ‘i_size_read’?
+  .read = device_read,
+          ^~~~~~~~~~~
+          i_size_read
+/home/detamos/testing/iodriver/iodriver.c:17:3: error: ‘struct file_operations’ has no member named ‘wrtie’; did you mean ‘write’?
+  .wrtie = device_write,
+   ^~~~~
+   write
+/home/detamos/testing/iodriver/iodriver.c:17:11: error: ‘device_write’ undeclared here (not in a function); did you mean ‘device_read’?
+  .wrtie = device_write,
+           ^~~~~~~~~~~~
+           device_read
+/home/detamos/testing/iodriver/iodriver.c:17:11: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
+/home/detamos/testing/iodriver/iodriver.c:17:11: note: (near initialization for ‘fops’)
+/home/detamos/testing/iodriver/iodriver.c:18:10: error: ‘device_open’ undeclared here (not in a function); did you mean ‘device_read’?
+  .open = device_open,
+          ^~~~~~~~~~~
+          device_read
+/home/detamos/testing/iodriver/iodriver.c:19:13: error: ‘device_release’ undeclared here (not in a function); did you mean ‘device_read’?
+  .release = device_release
+             ^~~~~~~~~~~~~~
+             device_read
+/home/detamos/testing/iodriver/iodriver.c: In function ‘cleanup_module’:
+/home/detamos/testing/iodriver/iodriver.c:42:12: error: void value not ignored as it ought to be
+  int ret = unregister_chrdev(Major, IODRIVER);
+            ^~~~~~~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:42:6: warning: unused variable ‘ret’ [-Wunused-variable]
+  int ret = unregister_chrdev(Major, IODRIVER);
+      ^~~
+In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
+/home/detamos/testing/iodriver/iodriver.c: At top level:
+./include/linux/kernel.h:806:42: error: expected identifier or ‘(’ before ‘{’ token
+ #define __min(t1, t2, min1, min2, x, y) ({  \
+                                          ^
+./include/linux/kernel.h:818:2: note: in expansion of macro ‘__min’
+  __min(typeof(x), typeof(y),   \
+  ^~~~~
+/home/detamos/testing/iodriver/iodriver.c:63:6: note: in expansion of macro ‘min’
+ void min(int a,int b)
+      ^~~
+/home/detamos/testing/iodriver/iodriver.c: In function ‘device_read’:
+/home/detamos/testing/iodriver/iodriver.c:75:8: error: ‘ptr’ undeclared (first use in this function)
+  while(ptr != NULL && buffer != NULL)
+        ^~~
+/home/detamos/testing/iodriver/iodriver.c:75:8: note: each undeclared identifier is reported only once for each function it appears in
+In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
+./include/linux/kernel.h:809:16: warning: comparison of distinct pointer types lacks a cast
+  (void) (&min1 == &min2);   \
+                ^
+./include/linux/kernel.h:818:2: note: in expansion of macro ‘__min’
+  __min(typeof(x), typeof(y),   \
+  ^~~~~
+/home/detamos/testing/iodriver/iodriver.c:85:9: note: in expansion of macro ‘min’
+  return min(size,bytesRead);
+         ^~~
+At top level:
+/home/detamos/testing/iodriver/iodriver.c:88:15: warning: ‘device_write’ defined but not used [-Wunused-function]
+ static size_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+               ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:70:15: warning: ‘device_read’ defined but not used [-Wunused-function]
+ static size_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
+               ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:54:12: warning: ‘device_release’ defined but not used [-Wunused-function]
+ static int device_release(struct inode *inode_,struct file *file_)
+            ^~~~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:45:12: warning: ‘device_open’ defined but not used [-Wunused-function]
+ static int device_open(struct inode *inode_, struct file *file_)
+            ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
+ static int Delay;
+            ^~~~~
+cc1: some warnings being treated as errors
+scripts/Makefile.build:339: recipe for target '/home/detamos/testing/iodriver/iodriver.o' failed
+make[2]: *** [/home/detamos/testing/iodriver/iodriver.o] Error 1
+Makefile:1552: recipe for target '_module_/home/detamos/testing/iodriver' failed
+make[1]: *** [_module_/home/detamos/testing/iodriver] Error 2
+make[1]: Leaving directory '/usr/src/linux-headers-4.15.0-22-generic'
+Makefile:4: recipe for target 'all' failed
+make: *** [all] Error 2
