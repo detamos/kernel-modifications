@@ -11,17 +11,17 @@ static int Major;
 static int numDevices = 0;
 static char data[MAX];
 
-static int device_open(struct inode *,struct file *);
-static int device_release(struct inode *,struct file *);
-static size_t device_read(struct file *,char *,size_t ,loff_t *);
-static size_t device_write(struct file *,char *,size_t,loff_t *);
+static int (*device_open)(struct inode *,struct file *);
+static int (*device_release)(struct inode *,struct file *);
+static size_t (*device_read)(struct file *,char *,size_t ,loff_t *);
+static size_t (*device_write)(struct file *,char *,size_t,loff_t *);
 
 static struct file_operations fops = 
 {
-	read : device_read,
-	wrtie : device_write,
-	open : device_open,
-	release : device_release
+	.read = device_read,
+	.wrtie = device_write,
+	.open = device_open,
+	.release = device_release
 };
 
 int init_module(void)
@@ -42,7 +42,7 @@ void cleanup_module(void)
 	int ret = unregister_chrdev(Major, IODRIVER);
 }
 
-static int device_open(struct inode *inode_, struct file *file_)
+static int (*device_open)(struct inode *inode_, struct file *file_)
 {
 	numDevices++;
 
@@ -51,7 +51,7 @@ static int device_open(struct inode *inode_, struct file *file_)
 	return 0;
 }
 
-static int device_release(struct inode *inode_,struct file *file_)
+static int (*device_release)(struct inode *inode_,struct file *file_)
 {
 	numDevices--;
 
@@ -67,7 +67,7 @@ void min(int a,int b)
 	return b;
 }
 
-static size_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *offset)
+static size_t (*device_read)(struct file *	filp,char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesRead = 0;
@@ -85,7 +85,7 @@ static size_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *o
 	return min(size,bytesRead);
 }
 
-static size_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+static size_t (*device_write)(struct file *filp,char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesWritten = 0;
