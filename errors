@@ -1,6 +1,5 @@
 make -C /lib/modules/4.15.0-22-generic/build M=/home/detamos/testing/iodriver modules
 make[1]: Entering directory '/usr/src/linux-headers-4.15.0-22-generic'
-Makefile:976: "Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, libelf-devel or elfutils-libelf-devel"
   CC [M]  /home/detamos/testing/iodriver/iodriver.o
 In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
 ./arch/x86/include/asm/uaccess.h: In function ‘set_fs’:
