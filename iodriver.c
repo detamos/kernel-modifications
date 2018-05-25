@@ -34,6 +34,8 @@ int init_module(void)
 		return Major;
 	}
 
+	printk(KERN_ALERT "Device Registered with %d device id\n",Major);
+
 	return 0;
 }
 
