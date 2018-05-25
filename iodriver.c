@@ -98,3 +98,7 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 
 	return bytesWritten;
 }
+
+
+module_init(init_module);
+module_exit(cleanup_module);
