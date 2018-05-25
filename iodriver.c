@@ -13,8 +13,8 @@ static char data[MAX];
 
 static int device_open(struct inode *,struct file *);
 static int device_release(struct inode *,struct file *);
-static size_t device_read(struct file *,char *,size_t ,loff_t *);
-static size_t device_write(struct file *,char *,size_t,loff_t *);
+static ssize_t device_read(struct file *,char *,size_t ,loff_t *);
+static ssize_t device_write(struct file *,char *,size_t,loff_t *);
 
 static struct file_operations fops = 
 {
