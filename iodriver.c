@@ -34,7 +34,7 @@ static int __init driver_init(void)
 		return Major;
 	}
 
-	printk(KERN_ALERT "Device Driver Registered with %d device id\n",Major);
+	printk(KERN_ALERT "Driver Registered with %d device id\n",Major);
 	return 0;
 }
 
