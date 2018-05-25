@@ -1,16 +1,29 @@
 make -C /lib/modules/4.15.0-22-generic/build M=/home/detamos/testing/iodriver modules
 make[1]: Entering directory '/usr/src/linux-headers-4.15.0-22-generic'
   CC [M]  /home/detamos/testing/iodriver/iodriver.o
+/home/detamos/testing/iodriver/iodriver.c:27:12: error: static declaration of ‘init_module’ follows non-static declaration
+ static int init_module(void)
+            ^~~~~~~~~~~
 In file included from /home/detamos/testing/iodriver/iodriver.c:2:0:
+./include/linux/module.h:73:12: note: previous declaration of ‘init_module’ was here
+ extern int init_module(void);
+            ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:41:13: error: static declaration of ‘cleanup_module’ follows non-static declaration
+ static void cleanup_module(void)
+             ^~~~~~~~~~~~~~
+In file included from /home/detamos/testing/iodriver/iodriver.c:2:0:
+./include/linux/module.h:74:13: note: previous declaration of ‘cleanup_module’ was here
+ extern void cleanup_module(void);
+             ^~~~~~~~~~~~~~
 ./include/linux/module.h:131:6: error: redefinition of ‘init_module’
   int init_module(void) __attribute__((alias(#initfn)));
       ^
 /home/detamos/testing/iodriver/iodriver.c:103:1: note: in expansion of macro ‘module_init’
  module_init(init_module);
  ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:27:5: note: previous definition of ‘init_module’ was here
- int init_module(void)
-     ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:27:12: note: previous definition of ‘init_module’ was here
+ static int init_module(void)
+            ^~~~~~~~~~~
 In file included from /home/detamos/testing/iodriver/iodriver.c:2:0:
 ./include/linux/module.h:137:7: error: redefinition of ‘cleanup_module’
   void cleanup_module(void) __attribute__((alias(#exitfn)));
@@ -18,9 +31,9 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:2:0:
 /home/detamos/testing/iodriver/iodriver.c:104:1: note: in expansion of macro ‘module_exit’
  module_exit(cleanup_module);
  ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:41:6: note: previous definition of ‘cleanup_module’ was here
- void cleanup_module(void)
-      ^~~~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:41:13: note: previous definition of ‘cleanup_module’ was here
+ static void cleanup_module(void)
+             ^~~~~~~~~~~~~~
 scripts/Makefile.build:339: recipe for target '/home/detamos/testing/iodriver/iodriver.o' failed
 make[2]: *** [/home/detamos/testing/iodriver/iodriver.o] Error 1
 Makefile:1552: recipe for target '_module_/home/detamos/testing/iodriver' failed
