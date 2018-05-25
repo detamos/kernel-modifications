@@ -24,7 +24,7 @@ static struct file_operations fops =
 	.release = device_release
 };
 
-int init_module(void)
+static int init_module(void)
 {	
 	Major = register_chrdev(0, IODRIVER, &fops);
 	
@@ -38,7 +38,7 @@ int init_module(void)
 	return 0;
 }
 
-void cleanup_module(void)
+static void cleanup_module(void)
 {
 	unregister_chrdev(Major, IODRIVER);
 }
