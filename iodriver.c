@@ -78,7 +78,8 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *o
 	return bytesRead;
 }
 
-static int device_write(struct file *filp,const char *buffer,size_t size, loff_t *offset)
+
+static ssize_t device_write(struct file *filp,const char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesWritten = 0;

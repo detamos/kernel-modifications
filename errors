@@ -3,15 +3,9 @@ make[1]: Entering directory '/usr/src/linux-headers-4.15.0-22-generic'
   CC [M]  /home/detamos/testing/iodriver/iodriver.o
 In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
 ./arch/x86/include/asm/uaccess.h: In function ‘set_fs’:
-./arch/x86/include/asm/uaccess.h:32:9: error: dereferencing pointer to incomplete type ‘struct task_struct’
+./arch/x86/include/asm/uaccess.h:33:9: error: dereferencing pointer to incomplete type ‘struct task_struct’
   current->thread.addr_limit = fs;
          ^~
-/home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-  .write = device_write,
-           ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
-cc1: some warnings being treated as errors
 scripts/Makefile.build:339: recipe for target '/home/detamos/testing/iodriver/iodriver.o' failed
 make[2]: *** [/home/detamos/testing/iodriver/iodriver.o] Error 1
 Makefile:1552: recipe for target '_module_/home/detamos/testing/iodriver' failed
