@@ -39,7 +39,7 @@ int init_module(void)
 
 void cleanup_module(void)
 {
-	int ret = unregister_chrdev(Major, IODRIVER);
+	unregister_chrdev(Major, IODRIVER);
 }
 
 static int device_open(struct inode *inode_, struct file *file_)
@@ -60,14 +60,8 @@ static int device_release(struct inode *inode_,struct file *file_)
 	return 0;
 }
 
-void min(int a,int b)
-{
-	if(a < b)
-		return a;
-	return b;
-}
 
-static size_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *offset)
+static ssize_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesRead = 0;
@@ -78,14 +72,13 @@ static size_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *o
 		{
 			return -EFAULT;
 		}
-
 		bytesRead++;
 	}
 
-	return min(size,bytesRead);
+	return bytesRead;
 }
 
-static size_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+static ssize_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesWritten = 0;
