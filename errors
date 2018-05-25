@@ -7,20 +7,10 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   current->thread.addr_limit = fs;
          ^~
 /home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-  .write = device_write,
-           ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
-/home/detamos/testing/iodriver/iodriver.c: In function ‘device_read’:
-/home/detamos/testing/iodriver/iodriver.c:69:8: error: ‘ptr’ undeclared (first use in this function)
-  while(ptr != NULL && buffer != NULL)
-        ^~~
-/home/detamos/testing/iodriver/iodriver.c:69:8: note: each undeclared identifier is reported only once for each function it appears in
-At top level:
-/home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
- static int Delay;
-            ^~~~~
-cc1: some warnings being treated as errors
+/home/detamos/testing/iodriver/iodriver.c:5:10: fatal error: time.h: No such file or directory
+ #include <time.h>
+          ^~~~~~~~
+compilation terminated.
 scripts/Makefile.build:339: recipe for target '/home/detamos/testing/iodriver/iodriver.o' failed
 make[2]: *** [/home/detamos/testing/iodriver/iodriver.o] Error 1
 Makefile:1552: recipe for target '_module_/home/detamos/testing/iodriver' failed
