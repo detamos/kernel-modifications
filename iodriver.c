@@ -26,21 +26,23 @@ static struct file_operations fops =
 
 static int __init driver_init(void)
 {	
+	printk(KERN_INFO "Loading the device ....\n");
 	Major = register_chrdev(0, IODRIVER, &fops);
 	
 	if(Major < 0)
 	{
-		printk(KERN_ALERT "Registering I/O Device failed with %d\n",Major);
+		printk(KERN_INFO "Registering I/O Device failed with %d\n",Major);
 		return Major;
 	}
 
-	printk(KERN_ALERT "Driver Registered with %d device id\n",Major);
+	printk(KERN_INFO "Driver Registered with %d device id\n",Major);
 	return 0;
 }
 
 static void __exit driver_cleanup(void)
 {
 	unregister_chrdev(Major, IODRIVER);
+	printk(KERN_INFO "CLeaning up the module...\n");
 }
 
 static int device_open(struct inode *inode_, struct file *file_)
