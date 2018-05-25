@@ -2,7 +2,6 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <asm/uaccess.h>
-#include <time.h>
 
 #define IODRIVER "iodriver"
 #define MAX		 100
@@ -84,15 +83,7 @@ static int device_write(struct file *filp,char *buffer,size_t size, loff_t *offs
 	char *ptrData = data;
 	int bytesWritten = 0;
 
-	clock_t start = clock();
-	while(1)
-	{
-		end = clock();
-		if((end-start)/CLOCKS_PER_SEC >= Delay)
-		{
-			break;
-		}
-	}
+	Delay = 10;
 
 	while(buffer != NULL)
 	{
