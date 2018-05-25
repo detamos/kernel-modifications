@@ -24,7 +24,7 @@ static struct file_operations fops =
 	.release = device_release
 };
 
-static int init_module(void)
+static int __init driver_init(void)
 {	
 	Major = register_chrdev(0, IODRIVER, &fops);
 	
@@ -38,7 +38,7 @@ static int init_module(void)
 	return 0;
 }
 
-static void cleanup_module(void)
+static void __exit driver_cleanup(void)
 {
 	unregister_chrdev(Major, IODRIVER);
 }
@@ -100,5 +100,5 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 }
 
 
-module_init(init_module);
-module_exit(cleanup_module);
+module_init(driver_init);
+module_exit(driver_cleanup);
