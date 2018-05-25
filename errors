@@ -7,44 +7,16 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   current->thread.addr_limit = fs;
          ^~
 /home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:21:10: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
-  .read = device_read,
-          ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:21:10: note: (near initialization for ‘fops.read’)
 /home/detamos/testing/iodriver/iodriver.c:22:11: error: initialization from incompatible pointer type [-Werror=incompatible-pointer-types]
   .write = device_write,
            ^~~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
-/home/detamos/testing/iodriver/iodriver.c:64:16: error: conflicting types for ‘device_read’
- static ssize_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
-                ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:16:15: note: previous declaration of ‘device_read’ was here
- static size_t device_read(struct file *,char *,size_t ,loff_t *);
-               ^~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c: In function ‘device_read’:
 /home/detamos/testing/iodriver/iodriver.c:69:8: error: ‘ptr’ undeclared (first use in this function)
   while(ptr != NULL && buffer != NULL)
         ^~~
 /home/detamos/testing/iodriver/iodriver.c:69:8: note: each undeclared identifier is reported only once for each function it appears in
-/home/detamos/testing/iodriver/iodriver.c: At top level:
-/home/detamos/testing/iodriver/iodriver.c:81:16: error: conflicting types for ‘device_write’
- static ssize_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
-                ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:17:15: note: previous declaration of ‘device_write’ was here
- static size_t device_write(struct file *,char *,size_t,loff_t *);
-               ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:16:15: warning: ‘device_read’ used but never defined
- static size_t device_read(struct file *,char *,size_t ,loff_t *);
-               ^~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:17:15: warning: ‘device_write’ used but never defined
- static size_t device_write(struct file *,char *,size_t,loff_t *);
-               ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:81:16: warning: ‘device_write’ defined but not used [-Wunused-function]
- static ssize_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
-                ^~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:64:16: warning: ‘device_read’ defined but not used [-Wunused-function]
- static ssize_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
-                ^~~~~~~~~~~
+At top level:
 /home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
  static int Delay;
             ^~~~~
