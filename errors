@@ -15,40 +15,36 @@ In file included from /home/detamos/testing/iodriver/iodriver.c:4:0:
   .write = device_write,
            ^~~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c:22:11: note: (near initialization for ‘fops.write’)
-/home/detamos/testing/iodriver/iodriver.c: In function ‘cleanup_module’:
-/home/detamos/testing/iodriver/iodriver.c:42:12: error: void value not ignored as it ought to be
-  int ret = unregister_chrdev(Major, IODRIVER);
-            ^~~~~~~~~~~~~~~~~
-/home/detamos/testing/iodriver/iodriver.c:42:6: warning: unused variable ‘ret’ [-Wunused-variable]
-  int ret = unregister_chrdev(Major, IODRIVER);
-      ^~~
-In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
-/home/detamos/testing/iodriver/iodriver.c: At top level:
-./include/linux/kernel.h:806:42: error: expected identifier or ‘(’ before ‘{’ token
- #define __min(t1, t2, min1, min2, x, y) ({  \
-                                          ^
-./include/linux/kernel.h:818:2: note: in expansion of macro ‘__min’
-  __min(typeof(x), typeof(y),   \
-  ^~~~~
-/home/detamos/testing/iodriver/iodriver.c:63:6: note: in expansion of macro ‘min’
- void min(int a,int b)
-      ^~~
+/home/detamos/testing/iodriver/iodriver.c:64:16: error: conflicting types for ‘device_read’
+ static ssize_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
+                ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:16:15: note: previous declaration of ‘device_read’ was here
+ static size_t device_read(struct file *,char *,size_t ,loff_t *);
+               ^~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c: In function ‘device_read’:
-/home/detamos/testing/iodriver/iodriver.c:75:8: error: ‘ptr’ undeclared (first use in this function)
+/home/detamos/testing/iodriver/iodriver.c:69:8: error: ‘ptr’ undeclared (first use in this function)
   while(ptr != NULL && buffer != NULL)
         ^~~
-/home/detamos/testing/iodriver/iodriver.c:75:8: note: each undeclared identifier is reported only once for each function it appears in
-In file included from /home/detamos/testing/iodriver/iodriver.c:1:0:
-./include/linux/kernel.h:809:16: warning: comparison of distinct pointer types lacks a cast
-  (void) (&min1 == &min2);   \
-                ^
-./include/linux/kernel.h:818:2: note: in expansion of macro ‘__min’
-  __min(typeof(x), typeof(y),   \
-  ^~~~~
-/home/detamos/testing/iodriver/iodriver.c:85:9: note: in expansion of macro ‘min’
-  return min(size,bytesRead);
-         ^~~
-At top level:
+/home/detamos/testing/iodriver/iodriver.c:69:8: note: each undeclared identifier is reported only once for each function it appears in
+/home/detamos/testing/iodriver/iodriver.c: At top level:
+/home/detamos/testing/iodriver/iodriver.c:81:16: error: conflicting types for ‘device_write’
+ static ssize_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+                ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:17:15: note: previous declaration of ‘device_write’ was here
+ static size_t device_write(struct file *,char *,size_t,loff_t *);
+               ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:16:15: warning: ‘device_read’ used but never defined
+ static size_t device_read(struct file *,char *,size_t ,loff_t *);
+               ^~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:17:15: warning: ‘device_write’ used but never defined
+ static size_t device_write(struct file *,char *,size_t,loff_t *);
+               ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:81:16: warning: ‘device_write’ defined but not used [-Wunused-function]
+ static ssize_t device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+                ^~~~~~~~~~~~
+/home/detamos/testing/iodriver/iodriver.c:64:16: warning: ‘device_read’ defined but not used [-Wunused-function]
+ static ssize_t device_read(struct file * filp,char *buffer,size_t size, loff_t *offset)
+                ^~~~~~~~~~~
 /home/detamos/testing/iodriver/iodriver.c:9:12: warning: ‘Delay’ defined but not used [-Wunused-variable]
  static int Delay;
             ^~~~~
