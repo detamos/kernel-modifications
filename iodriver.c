@@ -14,7 +14,7 @@ static char data[MAX];
 static int device_open(struct inode *,struct file *);
 static int device_release(struct inode *,struct file *);
 static ssize_t device_read(struct file *,char *,size_t ,loff_t *);
-static int device_write(struct file *,char *,size_t,loff_t *);
+static ssize_t device_write(struct file *,const char *,size_t,loff_t *);
 
 static struct file_operations fops = 
 {
@@ -61,7 +61,7 @@ static int device_release(struct inode *inode_,struct file *file_)
 }
 
 
-static ssize_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *offset)
+static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesRead = 0;
@@ -78,7 +78,7 @@ static ssize_t device_read(struct file *	filp,char *buffer,size_t size, loff_t *
 	return bytesRead;
 }
 
-static int device_write(struct file *filp,char *buffer,size_t size, loff_t *offset)
+static int device_write(struct file *filp,const char *buffer,size_t size, loff_t *offset)
 {
 	char *ptrData = data;
 	int bytesWritten = 0;
