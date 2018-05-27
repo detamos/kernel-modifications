@@ -66,6 +66,12 @@ static int device_release(struct inode *inode_,struct file *file_)
 
 static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *offset)
 {
+	static int finished = 0;
+	if(finished)
+	{
+		finished = 0;
+		return 0;
+	}
 	char *ptrData = data;
 	int bytesRead = 0;
 	int dataLen = strlen(ptrData);
@@ -78,6 +84,7 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *o
 		bytesRead++;
 		dataLen--;
 	}
+	finished = 1;
 	return bytesRead;
 }
 
@@ -98,7 +105,7 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 		bytesWritten++;
 		bufLen--;
 	}
-
+	printk(KERN_ALERT "String received : %s\n",data);
 	return bytesWritten;
 }
 
