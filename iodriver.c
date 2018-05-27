@@ -9,7 +9,7 @@
 static int Delay;
 static int Major;
 static int numDevices = 0;
-static char data[MAX] = "What to do now ??";
+static char data[MAX] = "What";
 
 static int device_open(struct inode *,struct file *);
 static int device_release(struct inode *,struct file *);
@@ -68,16 +68,19 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *o
 {
 	char *ptrData = data;
 	int bytesRead = 0;
-
-	while(ptrData != NULL && buffer != NULL)
+	int dataLen = strlen(ptrData);
+	printk(KERN_ALERT "Inside driver_read\n");
+	while(dataLen && buffer != NULL)
 	{
-		if(put_user(*(ptrData ++), buffer++))
+		if(put_user(*(ptrData++),buffer++))
 		{
 			return -EFAULT;
 		}
 		bytesRead++;
+		dataLen--;
 	}
 
+	printk(KERN_ALERT "Exiting driver_read\n");
 	return bytesRead;
 }
 
@@ -89,7 +92,7 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 
 	Delay = 10;
 
-	while(buffer != NULL)
+/*	while(buffer != NULL)
 	{
 		if(get_user(*(ptrData++), buffer++))
 		{
@@ -97,7 +100,7 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 		}
 		bytesWritten++;
 	}
-
+*/
 	return bytesWritten;
 }
 
