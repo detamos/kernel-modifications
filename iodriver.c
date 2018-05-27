@@ -9,7 +9,7 @@
 static int Delay;
 static int Major;
 static int numDevices = 0;
-static char data[MAX];
+static char data[MAX] = "What to do now ??";
 
 static int device_open(struct inode *,struct file *);
 static int device_release(struct inode *,struct file *);
@@ -26,7 +26,7 @@ static struct file_operations fops =
 
 static int __init driver_init(void)
 {	
-	printk(KERN_INFO "Loading the device ....\n");
+	printk(KERN_ALERT "Loading the device ....\n");
 	Major = register_chrdev(0, IODRIVER, &fops);
 	
 	if(Major < 0)
@@ -35,14 +35,14 @@ static int __init driver_init(void)
 		return Major;
 	}
 
-	printk(KERN_INFO "Driver Registered with %d device id\n",Major);
+	printk(KERN_ALERT "Driver Registered with %d device id\n",Major);
 	return 0;
 }
 
 static void __exit driver_cleanup(void)
 {
 	unregister_chrdev(Major, IODRIVER);
-	printk(KERN_INFO "CLeaning up the module...\n");
+	printk(KERN_ALERT "CLeaning up the module...\n");
 }
 
 static int device_open(struct inode *inode_, struct file *file_)
