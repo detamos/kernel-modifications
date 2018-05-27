@@ -4,7 +4,7 @@
 #include <asm/uaccess.h>
 
 #define IODRIVER "iodriver"
-#define MAX		 100
+#define MAX		 1000000
 
 static int Delay;
 static int Major;
@@ -69,7 +69,6 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *o
 	char *ptrData = data;
 	int bytesRead = 0;
 	int dataLen = strlen(ptrData);
-	printk(KERN_ALERT "Inside driver_read\n");
 	while(dataLen && buffer != NULL)
 	{
 		if(put_user(*(ptrData++),buffer++))
@@ -79,8 +78,6 @@ static ssize_t device_read(struct file *filp,char *buffer,size_t size, loff_t *o
 		bytesRead++;
 		dataLen--;
 	}
-
-	printk(KERN_ALERT "Exiting driver_read\n");
 	return bytesRead;
 }
 
@@ -89,18 +86,19 @@ static ssize_t device_write(struct file *filp,const char *buffer,size_t size, lo
 {
 	char *ptrData = data;
 	int bytesWritten = 0;
-
+	int bufLen = strlen(buffer);
 	Delay = 10;
 
-/*	while(buffer != NULL)
+	while(bufLen)
 	{
 		if(get_user(*(ptrData++), buffer++))
 		{
 			return -EFAULT;
 		}
 		bytesWritten++;
+		bufLen--;
 	}
-*/
+
 	return bytesWritten;
 }
 
